@@ -22,51 +22,47 @@ pip install streamlit
 
 import joblib
 
-# Example of using a relative path
-    model_path = os.path.join(os.path.dirname(__file__), 'model_joblib_gr')
-    model = joblib.load(model_path)
+ # Create input fields for features
+  latitude = st.number_input("Latitude")
+  longitude = st.number_input("Longitude")
+  lnd_sqfoot = st.number_input("Land Square Footage")
+  tot_lvg_area = st.number_input("Total Living Area")
+  spec_feat_val = st.number_input("Special Feature Value")
+  rail_dist = st.number_input("Distance to Rail")
+  ocean_dist = st.number_input("Distance to Ocean")
+  water_dist = st.number_input("Distance to Water")
+  cntr_dist = st.number_input("Distance to Center")
+  subcntr_di = st.number_input("Distance to Subcenter")
+  hwy_dist = st.number_input("Distance to Highway")
+  age = st.number_input("Age of House")
+  avno60plus = st.number_input("Number of Avenues over 60 feet wide")
+  month_sold = st.number_input("Month Sold")
+  structure_quality = st.number_input("Structure Quality")
+  
+  # Create a dataframe from the input values
+  input_data = pd.DataFrame({
+        'LATITUDE': [latitude],'LONGITUDE': [longitude], 
+        'LND_SQFOOT': [lnd_sqfoot], 
+        'TOT_LVG_AREA': [tot_lvg_area],
+        'SPEC_FEAT_VAL': [spec_feat_val],
+        'RAIL_DIST': [rail_dist], 
+        'OCEAN_DIST': [ocean_dist],
+        'WATER_DIST': [water_dist],
+        'CNTR_DIST': [cntr_dist],
+        'SUBCNTR_DI': [subcntr_di],
+        'HWY_DIST': [hwy_dist], 
+        'age': [age], 
+        'avno60plus': [avno60plus],
+        'month_sold': [month_sold], 
+        'structure_quality': [structure_quality]
+    })
+  if st.button("Predict"):
+    with st.spinner('Calculating...'):  # Display a spinner while predicting
+      time.sleep(1)  # Simulate some processing time
+      prediction = model.predict(input_data)[0]
+      st.success(f"Predicted Price: ${prediction:,.2f}")
+      st.balloons()  # Show balloons after prediction
 
-    p1 = st.slider("LATITUDE")
-    p2 = st.selectbox('LONGITUDE')
-    if s1 =='Male':
-        p2 = 1
-    else:
-        p2 = 0
-    p3 = st.number_input("Enter your BMI(Body mass index) value")
-    p4 = st.slider("Enter number of children",0, 5)
-    s2 = st.selectbox("Are you a smoker? ", ("Yes", "No"))
-    if s2 == "Yes":
-        p5 = 1
-    else:
-        p5 = 0
-
-    #p6 = st.slider("Enter your region", 1,4)#"southwest":0, "southeast":1, "northwest":2, "northeast":3
-    s3 = st.selectbox("Enter your region", ("Southwest", "Southeast", "Northwest", "Northeast"))
-    if s2 == "Southwest":
-        p6 = 0
-    elif s2 == "Southeast":
-        p6 = 1
-    elif s3 == "Northwest":
-        p6 = 2
-    else:
-        p6 = 3
-
-    # Debugging statements
-    print(f"Inputs: {p1}, {p2}, {p3}, {p4}, {p5}, {p6}")
-    input_data = np.array([[p1, p2, p3, p4, p5, p6]])
-    print(f"Input data shape: {input_data.shape}")
-
-    # Example result (replace with your prediction logic)
-    if st.button("Predict"):
-        try:
-            prediction = model.predict(input_data)
-            st.balloons()
-            st.success(f"Your insurance cost is {round(prediction[0], 2)} US Dollars")
-        except Exception as e:
-            st.error(f"Error in prediction: {e}")
-
-if __name__ == '__main__':
-    main()
-
-from google.colab import drive
-drive.mount('/content/drive')
+# Run the app
+if __name__ == "__main__":
+  app()
