@@ -57,8 +57,8 @@ def main():
     if st.button("Predict"):
         with st.spinner('Calculating...'):  # Display a spinner while predicting
             prediction = model.predict(input_data)
-            st.success(f"Predicted Price: ${prediction:,.2f}")
-            st.balloons()  # Show balloons after prediction
+            st.success(f"Predicted Price: ${prediction[0]:,.2f}")  # Access the prediction value correctly
+            st.balloons()
 
 # Run the app
 if __name__ == "__main__":
