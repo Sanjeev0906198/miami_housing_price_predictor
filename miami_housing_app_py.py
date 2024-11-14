@@ -18,7 +18,6 @@ import os
 def main():
     st.title("miami housing prediction")
 
-pip install streamlit
 
 import joblib
 
