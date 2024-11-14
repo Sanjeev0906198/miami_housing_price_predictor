@@ -15,6 +15,8 @@ from sklearn import linear_model
 import streamlit as st
 import joblib
 import os
+
+model_path = os.
 def main():
     st.title("miami housing prediction")
     # Create input fields for features
