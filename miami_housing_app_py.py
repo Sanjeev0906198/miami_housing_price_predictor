@@ -63,5 +63,5 @@ if st.button("Predict"):
         st.balloons()  # Show balloons after prediction
 
 # Run the app
-if __name__ == "__main__":
+if __name__ == "__app__":
   app()
