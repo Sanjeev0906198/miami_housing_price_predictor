@@ -53,7 +53,7 @@ def main():
     })
     if st.button("Predict"):
         with st.spinner('Calculating...'):  # Display a spinner while predicting
-            prediction = model.predict(input_data)[0]
+            prediction = model.predict(input_data)
             st.success(f"Predicted Price: ${prediction:,.2f}")
             st.balloons()  # Show balloons after prediction
 
