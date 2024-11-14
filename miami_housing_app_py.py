@@ -15,7 +15,7 @@ from sklearn import linear_model
 import streamlit as st
 import joblib
 import os
-def app():
+def main():
     st.title("miami housing prediction")
 
 
@@ -64,4 +64,4 @@ if st.button("Predict"):
 
 # Run the app
 if __name__ == "__app__":
-  app()
+  main()
