@@ -16,7 +16,8 @@ import streamlit as st
 import joblib
 import os
 
-model_path = os.
+model_path = os.path.join(os.path.dirname(__file__), 'miami_housing_model')
+model = joblib.load(model_path)
 def main():
     st.title("miami housing prediction")
     # Create input fields for features
