@@ -15,7 +15,7 @@ from sklearn import linear_model
 import streamlit as st
 import joblib
 import os
-def main():
+def app():
     st.title("miami housing prediction")
 
 
